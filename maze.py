@@ -24,23 +24,25 @@ class GameSprite(sprite.Sprite):
         mw.blit(self.image,(self.rect.x,self.rect.y))
 
 class Player(GameSprite):
-    def update(self):
+    def update_left(self):
         keys_pressed = key.get_pressed()
         if keys_pressed[K_w] and self.rect.y > 5:
             self.rect.y -= 10
-        if keys_pressed[K_a] and self.rect.x > 5:
-            self.rect.x -= 10
-        if keys_pressed[K_d] and self.rect.x < 650:
-            self.rect.x += 10
-        if keys_pressed[K_s] and self.rect.y < 420:
+        if keys_pressed[K_s] and self.rect.y < 350:
+            self.rect.y += 10
+    def update_right(self):
+        keys_pressed = key.get_pressed()
+        if keys_pressed[K_UP] and self.rect.y > 5:
+            self.rect.y -= 10
+        if keys_pressed[K_DOWN] and self.rect.y < 350:
             self.rect.y += 10
         
 
 
 
 
-player1 = Player('messy.png',50,100,3,80,150)
-player2 = Player('ronaldo.png',100,100,3,80,150)
+player1 = Player('messy.png',0,100,3,80,150)
+player2 = Player('ronaldo.png',620,100,3,80,150)
 
 font = font.SysFont('Arial',70)
 winer = font.render('TO BE CONTINUED',True,(255,215,0))
@@ -54,9 +56,9 @@ while game:
             game = False
     if finish != True:
         mw.blit(background,(0,0))
-        player1.update()
+        player1.update_left()
         player1.reset()
-        player2.update()
+        player2.update_right()
         player2.reset()
         
         
