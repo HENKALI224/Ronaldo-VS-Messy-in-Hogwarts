@@ -43,6 +43,7 @@ class Player(GameSprite):
 
 player1 = Player('messy.png',0,100,3,80,150)
 player2 = Player('ronaldo.png',620,100,3,80,150)
+ball = GameSprite('nuclear-bomb-04.png',250,350,1,75,50)
 
 font = font.SysFont('Arial',70)
 winer = font.render('TO BE CONTINUED',True,(255,215,0))
@@ -60,6 +61,7 @@ while game:
         player1.reset()
         player2.update_right()
         player2.reset()
+        ball.reset()
         
         
 
