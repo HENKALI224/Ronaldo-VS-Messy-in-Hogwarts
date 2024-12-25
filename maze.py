@@ -1,4 +1,3 @@
-#создай игру "Лабиринт"!
 from pygame import *
 mixer.init()
 font.init()
@@ -51,6 +50,8 @@ lose = font.render('TO BE CONTINUED',True,(255,0,0))
 clock = time.Clock()
 finish = False
 game = True
+speed_x = 3
+speed_y = 3
 while game:
     for e in event.get():
         if e.type == QUIT:
@@ -61,9 +62,14 @@ while game:
         player1.reset()
         player2.update_right()
         player2.reset()
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
         ball.reset()
-        
-        
+        if ball.rect.y > 500 - 50 or ball.rect.y < 0:
+            speed_y *= -1
+        if sprite.collide_rect(player1,ball) or sprite.collide_rect(player2,ball):
+            speed_x *= -1
+
 
     
     
