@@ -1,3 +1,4 @@
+#создай игру "Лабиринт"!
 from pygame import *
 mixer.init()
 font.init()
@@ -45,8 +46,8 @@ player2 = Player('ronaldo.png',620,100,3,80,150)
 ball = GameSprite('nuclear-bomb-04.png',250,350,1,75,50)
 
 font = font.SysFont('Arial',70)
-winer = font.render('TO BE CONTINUED',True,(255,215,0))
-lose = font.render('TO BE CONTINUED',True,(255,0,0))
+winer1 = font.render('Player 1 wins',True,(255,215,0))
+winer2 = font.render('Player 2 wins',True,(255,0,0))
 clock = time.Clock()
 finish = False
 game = True
@@ -69,6 +70,13 @@ while game:
             speed_y *= -1
         if sprite.collide_rect(player1,ball) or sprite.collide_rect(player2,ball):
             speed_x *= -1
+        if ball.rect.x >= 650:
+            finish = True          
+            mw.blit(winer1,(200,200))
+        if ball.rect.x <= 0:
+            finish = True
+            mw.blit(winer2,(200,200))
+
 
 
     
